@@ -145,6 +145,7 @@ function articleFactory ({title, date, firstParagraph, secondParagraph, thirdPar
   pFirst.textContent = firstParagraph;
   pSecond.textContent = secondParagraph;
   pThird.textContent = thirdParagraph;
+  span.textContent = 'click to read more';
 
   //setting  up of element attributes 
 
@@ -154,8 +155,8 @@ function articleFactory ({title, date, firstParagraph, secondParagraph, thirdPar
 
   //event listener
 
-  span.addEventListener('toggle', () => {
-    newArticle.classList.toggle('hidden')
+  span.addEventListener('click', () => {
+    newArticle.classList.toggle('article-open')
   })
 
   // fill up article div
