@@ -115,7 +115,7 @@ const data = [
 
 
 
-function articleFactory ({title, date, p1, p2, p3}){
+function articleFactory ({title, date, firstParagraph, secondParagraph, thirdParagraph}){
 
   //declaration of variables
   
@@ -131,9 +131,9 @@ function articleFactory ({title, date, p1, p2, p3}){
 
   h2.textContent = title;
   pdate.textContent = date;
-  pFirst.textContent = p1;
-  pSecond.textContent = p2;
-  pThird.textContent = p3;
+  pFirst.textContent = firstParagraph;
+  pSecond.textContent = secondParagraph;
+  pThird.textContent = thirdParagraph;
 
   //setting  up of element attributes 
 
@@ -163,10 +163,15 @@ function articleFactory ({title, date, p1, p2, p3}){
 
 const mappedArticle = data.map(articleFactory);
 
-
-
 //select article div in index.html 
 
 const articleDiv= document.querySelector('.articles');
 
-articleDiv.appendChild(mappedArticle);
+// articleDiv.appendChild(mappedArticle);
+
+let grand = mappedArticle.forEach(element => {
+  return articleDiv.appendChild(element);
+});
+
+
+
