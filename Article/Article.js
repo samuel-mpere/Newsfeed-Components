@@ -85,6 +85,17 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Another student from WEBEU1 just got a new offer!',
+    date: 'September 4 2019',
+
+    firstParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    `,
+
+    secondParagraph: `Remember this, boy. All dwarfs may be bastards, yet not all bastards need be dwarfs." And with that he turned and sauntered back into the feast, whistling a tune. When he opened the door, the light from within threw his shadow clear across the yard, and for just a moment Tyrion Lannister stood tall as a king.`,
+
+    thirdParagraph: `Yet even so, Jon Snow was not sorry he had come. There were wonders here as well. He had seen sunlight flashing on icy thin waterfalls as they plunged over the lips of sheer stone cliffs, and a mountain meadow full of autumn wildflowers, blue coldsnaps and bright scarlet frostfires and stands of piper's grass in russet and gold. He had peered down ravines so deep and black they seemed certain to end in some hell, and he had ridden his garron over a wind-eaten bridge of natural stone with nothing but sky to either side. Eagles nested in the heights and came down to hunt the valleys, circling effortlessly on great blue-grey wings that seemed almost part of the sky.`
   }
 ];
 
@@ -112,3 +123,67 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+
+
+function articleFactory ({title, date, firstParagraph, secondParagraph, thirdParagraph}){
+
+  //declaration of variables
+  
+  const newArticle = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const pdate = document.createElement('p');
+  const pFirst = document.createElement('p');
+  const pSecond = document.createElement('p');
+  const pThird = document.createElement('p');
+  const span = document.createElement('span');
+
+  //add content to elements 
+
+  h2.textContent = title;
+  pdate.textContent = date;
+  pFirst.textContent = firstParagraph;
+  pSecond.textContent = secondParagraph;
+  pThird.textContent = thirdParagraph;
+  span.textContent = 'click to read more';
+
+  //setting  up of element attributes 
+
+  newArticle.classList.add('article');
+  pdate.classList.add('date');
+  span.classList.add('expandButton');
+
+  //event listener
+
+  span.addEventListener('click', () => {
+    newArticle.classList.toggle('article-open')
+  })
+
+  // fill up article div
+  
+  newArticle.appendChild(h2);
+  newArticle.appendChild(pdate);
+  newArticle.appendChild(pFirst);
+  newArticle.appendChild(pThird);
+  newArticle.appendChild(span);
+
+  return newArticle;
+
+}
+
+//declare variable 
+
+const mappedArticle = data.map(articleFactory);
+
+//select article div in index.html 
+
+const articleDiv= document.querySelector('.articles');
+
+// articleDiv.appendChild(mappedArticle);
+
+let grand = mappedArticle.forEach(element => {
+  return articleDiv.appendChild(element);
+});
+
+
+

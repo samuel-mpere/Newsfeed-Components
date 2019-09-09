@@ -33,3 +33,43 @@ let menuItems = [
   Step 6: add the menu component to the DOM.
   
 */
+
+
+function niceMenu (niceArray){
+
+
+  //declaration of variables 
+
+  const newMenuDiv = document.createElement('div');
+  const newUlElement = document.createElement('ul');
+  
+  newMenuDiv.classList.add('menu');
+  
+  newMenuDiv.appendChild(newUlElement);
+  
+  
+  niceArray.forEach(element => {
+    let newLiElement = document.createElement('li');
+    newLiElement.textContent = element;
+
+  newUlElement.appendChild(newLiElement);
+
+  });
+
+
+  const menuButton = document.querySelector('.menu-button');
+  
+  menuButton.addEventListener('click', () => {
+  document.querySelector('.menu').classList.toggle('menu--open')
+  });
+
+  return newMenuDiv;
+  
+}
+
+const grandMenu = niceMenu(menuItems);
+const petitMenu = document.querySelector('.header');
+
+petitMenu.appendChild(grandMenu);
+
+
